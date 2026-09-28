@@ -1,0 +1,220 @@
+.plain {
+  --paper: #fbf8f1;
+  --ink: #15130f;
+  --ink-2: #3f3a31;
+  --ink-3: #5c574c;
+  --red: #c4211a;
+  --line: #e2dccd;
+  min-height: 100dvh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-zen), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.plain ::selection {
+  background: var(--red);
+  color: #fff;
+}
+
+.plain :focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+
+.plain .f-dela {
+  font-family: var(--font-dela), var(--font-zen), sans-serif;
+}
+
+.plain-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 2px solid var(--ink);
+  background: var(--paper);
+}
+
+.plain-link {
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.plain-link:hover {
+  color: var(--red);
+}
+
+.hanko {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 3px solid var(--red);
+  border-radius: 6px;
+  color: var(--red);
+  font-family: var(--font-dela), var(--font-zen), sans-serif;
+  font-size: 1.9rem;
+  line-height: 1;
+  transform: rotate(-6deg);
+}
+
+.glance {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 2px solid var(--ink);
+  background: #fff;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.glance > div {
+  padding: 1rem;
+  border-color: var(--line);
+}
+
+.glance > div:nth-child(odd) {
+  border-right: 1px solid var(--line);
+}
+.glance > div:nth-child(-n + 2) {
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 640px) {
+  .glance {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .glance > div {
+    border-bottom: 0 !important;
+    border-right: 1px solid var(--line);
+  }
+  .glance > div:last-child {
+    border-right: 0;
+  }
+}
+
+.chapter-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+.chapter-no {
+  font-family: var(--font-dela), sans-serif;
+  font-size: 0.95rem;
+  color: var(--red);
+}
+
+.chapter-title {
+  font-family: var(--font-dela), var(--font-zen), sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.1;
+}
+
+.chapter-jp {
+  margin-left: auto;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink-3);
+  letter-spacing: 0.15em;
+}
+
+.entry {
+  padding-left: 1rem;
+  border-left: 3px solid var(--ink);
+}
+
+.stamp-now {
+  display: inline-block;
+  margin-left: 0.6rem;
+  padding: 0 0.45rem;
+  border: 2px solid var(--red);
+  color: var(--red);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  vertical-align: 0.2em;
+  transform: rotate(-4deg);
+}
+
+.tech {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--ink-3);
+}
+
+.chip {
+  display: inline-block;
+  padding: 0.05rem 0.55rem;
+  border: 1.5px solid var(--ink);
+  background: #fff;
+  font-size: 0.875rem;
+}
+
+@media print {
+  .plain {
+    background: #fff;
+    line-height: 1.45;
+  }
+  .glance {
+    box-shadow: none;
+  }
+  .chapter-head {
+    break-after: avoid;
+  }
+  .plain li {
+    break-inside: avoid;
+  }
+  .chip {
+    border: 0;
+    padding: 0;
+    background: none;
+  }
+  .chip:not(:last-child)::after {
+    content: ",";
+  }
+  .plain dd.flex {
+    column-gap: 0.35rem;
+    row-gap: 0;
+  }
+  .plain .space-y-4 > * + * {
+    margin-top: 0.35rem !important;
+  }
+  .plain-link {
+    text-decoration: none;
+  }
+  .plain main > div:last-of-type {
+    margin-top: 1.25rem;
+  }
+  .plain main > div:last-of-type > * + * {
+    margin-top: 1.25rem !important;
+  }
+  .plain .glance {
+    margin-top: 1rem;
+  }
+  .plain .glance > div {
+    padding: 0.5rem 0.75rem;
+  }
+  .chapter-title {
+    font-size: 1.3rem;
+  }
+  .plain ul.mt-3 {
+    margin-top: 0.4rem;
+  }
+  .plain ul > li + li {
+    margin-top: 0.2rem !important;
+  }
+  .plain .space-y-6 > * + * {
+    margin-top: 0.9rem !important;
+  }
+  .plain .chapter > .mt-4 {
+    margin-top: 0.6rem;
+  }
+  .print-hide {
+    display: none;
+  }
+}
