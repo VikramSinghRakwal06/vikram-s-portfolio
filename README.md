@@ -22,7 +22,7 @@ All artwork is original SVG/CSS; anime references are labelled on the page as ho
 
 Drop a square portrait into `public/characters/` named after the character, then rebuild. It appears as a round icon next to that technique's symbol:
 
-`sukuna` · `gojo` · `madara` · `deku` · `jinwoo` · `luffy` · `ichigo` · `kid-goku` · `pikachu` · `greninja` · `zoro` · `tanjiro` · `zenitsu` · `inosuke`; allies: `naruto` · `sasuke` · `kakashi` · `sakura` · `guy` (Tsukuyomi), `bakugo` · `allmight` (Plus Ultra)
+`sukuna` · `gojo` · `madara` · `deku` · `jinwoo` · `luffy` · `ichigo` · `kid-goku` · `pikachu` · `greninja` · `zoro` · `tanjiro` · `zenitsu` · `inosuke`; allies: `naruto` · `sasuke` · `kakashi` · `sakura` · `guy` (Tsukuyomi), `bakugo` · `allmight` (Plus Ultra), `yami` · `yuno` (Anti Magic); extras: `ash`, `asta`, `sanji`, `blackbulls`, `clover`, `pikachu-run`, `squirtle` · `bulbasaur` · `charmander` (Pikachu allies), scenes `goku-ui`, `greninja-scene`, `yami-scene`, `pikachu-scene`, `charizard-scene`; Charizard: `charizard` · `charizard-x` · `charizard-mandala` · `seismic`
 
 Any of `.png`, `.jpg`, `.webp` or `.avif` works (for example `public/characters/gojo.webp`). Missing files fall back to the symbol alone; Madara has a drawn portrait by default. Only use images you have the rights to.
 
