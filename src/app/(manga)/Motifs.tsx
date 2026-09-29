@@ -953,3 +953,372 @@ export function BlackFlash({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+function UniformCollar({ trim }: { trim: string }) {
+  const ink = "var(--ink)";
+  return (
+    <>
+      <path
+        d="M26 116Q60 132 94 116L100 150H20Z"
+        fill="#1c1a2e"
+        stroke={ink}
+        strokeWidth="2.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M34 112Q60 126 86 112L88 128Q60 142 32 128Z"
+        fill="#26233d"
+        stroke={ink}
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path d="M60 128V150" stroke={trim} strokeWidth="1.5" />
+      <circle
+        cx="60"
+        cy="140"
+        r="4.5"
+        fill="#d9b24c"
+        stroke={ink}
+        strokeWidth="1.5"
+      />
+      <path
+        d="M58 140a2 2 0 1 1 2 2"
+        fill="none"
+        stroke={ink}
+        strokeWidth="1"
+      />
+    </>
+  );
+}
+
+const face = "M30 80Q30 114 60 124Q90 114 90 80Z";
+
+export function ChibiGojo({ className = "" }: { className?: string }) {
+  const ink = "var(--ink)";
+  const hair =
+    "M20 76L8 60L19 58L6 40L24 44L17 21L36 31L37 8L52 25L61 1L69 23L85 6L85 29L103 16L97 39L115 35L101 53L111 60L98 72Q60 60 20 76Z";
+  return (
+    <svg
+      viewBox="0 0 120 150"
+      className={className}
+      role="img"
+      aria-label="Chibi Gojo"
+    >
+      <defs>
+        <radialGradient id="gojo-eye" cx="40%" cy="40%" r="60%">
+          <stop offset="0" stopColor="#ffffff" />
+          <stop offset="0.3" stopColor="#b8f4ff" />
+          <stop offset="0.7" stopColor="#3aa0ff" />
+          <stop offset="1" stopColor="#1554d6" />
+        </radialGradient>
+        <linearGradient id="gojo-hair" x1="0" y1="1" x2="0.5" y2="0">
+          <stop offset="0" stopColor="#c7bde6" />
+          <stop offset="0.5" stopColor="#efebfb" />
+          <stop offset="1" stopColor="#ffffff" />
+        </linearGradient>
+      </defs>
+      <UniformCollar trim="#3a3656" />
+      <circle
+        cx="29"
+        cy="94"
+        r="7"
+        fill="#ffe1cc"
+        stroke={ink}
+        strokeWidth="2.2"
+      />
+      <circle
+        cx="91"
+        cy="94"
+        r="7"
+        fill="#ffe1cc"
+        stroke={ink}
+        strokeWidth="2.2"
+      />
+      <path
+        d={face}
+        fill="#ffe1cc"
+        stroke={ink}
+        strokeWidth="2.5"
+        strokeLinejoin="round"
+      />
+      <g className="gojo-eyes">
+        {[46, 74].map((x) => (
+          <g key={x}>
+            <ellipse
+              cx={x}
+              cy="88"
+              rx="7.5"
+              ry="7"
+              fill="url(#gojo-eye)"
+              stroke={ink}
+              strokeWidth="1.6"
+            />
+            <circle cx={x - 2.5} cy="85.5" r="2" fill="#fff" />
+            <path
+              d={`M${x - 8} 82q8-5 16 0`}
+              fill="none"
+              stroke="#f4f1fd"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </g>
+        ))}
+      </g>
+      <ellipse cx="40" cy="104" rx="5" ry="2.5" fill="#ffb3a6" opacity="0.7" />
+      <ellipse cx="80" cy="104" rx="5" ry="2.5" fill="#ffb3a6" opacity="0.7" />
+      <path
+        d="M53 108q7 6 14 0"
+        fill="none"
+        stroke={ink}
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+      <g className="gojo-blindfold">
+        <path
+          d="M23 70Q60 62 97 70L95 99Q60 93 25 99Z"
+          fill="#1c1a2e"
+          stroke={ink}
+          strokeWidth="2.5"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M30 76Q60 70 90 76"
+          fill="none"
+          stroke="#fff"
+          strokeOpacity="0.18"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+        <path
+          d="M32 88Q60 83 88 88"
+          fill="none"
+          stroke="#3a3656"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M95 78l16 3-12 5 10 6-15-2"
+          fill="#1c1a2e"
+          stroke={ink}
+          strokeWidth="1.5"
+          strokeLinejoin="round"
+        />
+      </g>
+      <path d={hair} transform="translate(3 3)" fill="#b3a8d8" />
+      <path
+        d={hair}
+        fill="url(#gojo-hair)"
+        stroke={ink}
+        strokeWidth="2.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30 52L40 64M50 30L54 56M66 26L66 52M82 32L78 56M96 44L88 62"
+        stroke="#b9afe0"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M57 68C51 60 59 49 69 53C77 57 73 69 65 67C61 66 62 61 66 61"
+        fill="none"
+        stroke={ink}
+        strokeWidth="7"
+        strokeLinecap="round"
+      />
+      <path
+        d="M57 68C51 60 59 49 69 53C77 57 73 69 65 67C61 66 62 61 66 61"
+        fill="none"
+        stroke="#f4f1fd"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function ChibiSukuna({ className = "" }: { className?: string }) {
+  const ink = "var(--ink)";
+  const hair =
+    "M24 74L20 56L30 58L24 38L40 44L40 24L54 36L60 16L68 36L82 24L82 44L98 38L92 58L102 56L98 74Q60 62 24 74Z";
+  return (
+    <svg
+      viewBox="0 0 120 150"
+      className={className}
+      role="img"
+      aria-label="Chibi Sukuna"
+    >
+      <UniformCollar trim="#c4211a" />
+      <circle
+        cx="29"
+        cy="94"
+        r="7"
+        fill="#ffe1cc"
+        stroke={ink}
+        strokeWidth="2.2"
+      />
+      <circle
+        cx="91"
+        cy="94"
+        r="7"
+        fill="#ffe1cc"
+        stroke={ink}
+        strokeWidth="2.2"
+      />
+      <path
+        d={face}
+        fill="#ffe1cc"
+        stroke={ink}
+        strokeWidth="2.5"
+        strokeLinejoin="round"
+      />
+      {/* undercut sides */}
+      <path d="M30 80Q29 70 36 66L38 80Z" fill="#3a1f24" />
+      <path d="M90 80Q91 70 84 66L82 80Z" fill="#3a1f24" />
+      {/* forehead marking */}
+      <path d="M52 70L60 64L68 70L60 76Z" fill={ink} />
+      {/* cheek bands */}
+      <path
+        d="M31 100h12M31 104h10M89 100H77M89 104H79"
+        stroke={ink}
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+      {[44, 76].map((x, k) => (
+        <g key={x}>
+          <path
+            d={
+              k === 0
+                ? `M${x - 9} 87Q${x} 78 ${x + 8} 89Q${x} 92 ${x - 9} 87Z`
+                : `M${x - 8} 89Q${x} 78 ${x + 9} 87Q${x} 92 ${x - 8} 89Z`
+            }
+            fill="#fff"
+            stroke={ink}
+            strokeWidth="1.8"
+          />
+          <ellipse cx={x} cy="87" rx="3.6" ry="3.8" fill="#d4201a" />
+          <ellipse cx={x} cy="87" rx="1" ry="3" fill="#1a0505" />
+          <path
+            d={k === 0 ? `M${x - 11} 80l19 4` : `M${x + 11} 80l-19 4`}
+            stroke={ink}
+            strokeWidth="2.8"
+            strokeLinecap="round"
+          />
+          {/* second eyes: shut slits that open on hover */}
+          <path
+            d={`M${x - 7} 96q7 3 14 0`}
+            fill="none"
+            stroke={ink}
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+          <g className="sukuna-eyes">
+            <path
+              d={`M${x - 7} 96Q${x} 90 ${x + 7} 96Q${x} 100 ${x - 7} 96Z`}
+              fill="#fff"
+              stroke={ink}
+              strokeWidth="1.5"
+            />
+            <circle cx={x} cy="95.6" r="2" fill="#d4201a" />
+          </g>
+        </g>
+      ))}
+      {/* wide grin with teeth */}
+      <path
+        d="M44 106Q60 122 76 106Q60 112 44 106Z"
+        fill="#3a0a0a"
+        stroke={ink}
+        strokeWidth="2.2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M47 108L50 112L53 109L56 113L59 110L62 113L65 109L68 112L71 109L73 108Q60 112 47 108Z"
+        fill="#fff"
+      />
+      {/* raised hand with black nails */}
+      <g transform="translate(88 110) rotate(-14)">
+        <path
+          d="M0 26V8Q0 4 4 4Q8 4 8 8V0Q8-4 12-4Q16-4 16 0V2Q16-2 20-2Q24-2 24 2V8Q24 4 28 4Q32 4 32 8V26Q16 34 0 26Z"
+          fill="#ffe1cc"
+          stroke={ink}
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        {[4, 12, 20, 28].map((x, k) => (
+          <path
+            key={x}
+            d={`M${x - 3} ${k === 1 ? -3 : k === 2 ? -1 : 5}h6l-3 -4z`}
+            fill={ink}
+          />
+        ))}
+      </g>
+      <path d={hair} transform="translate(3 3)" fill="#c9606c" />
+      <path
+        d={hair}
+        fill="#f2a0a8"
+        stroke={ink}
+        strokeWidth="2.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M40 52L46 66M58 36L60 60M76 44L72 64"
+        stroke="#d9737e"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function SantoryuSwords({ className = "" }: { className?: string }) {
+  const swords = [
+    { angle: -5, handle: "#f4efe4", blade: "#fbf9f3", name: "Wado Ichimonji" },
+    { angle: 0, handle: "#c4211a", blade: "#e8e4dc", name: "Sandai Kitetsu" },
+    { angle: 5, handle: "#1d1c1a", blade: "#2a2722", name: "Shusui" },
+  ];
+  return (
+    <svg
+      viewBox="0 0 640 120"
+      className={className}
+      role="img"
+      aria-label="Zoro's three swords: Wado Ichimonji, Sandai Kitetsu and Shusui"
+    >
+      {swords.map((s) => (
+        <g key={s.name} transform={`rotate(${s.angle} 170 60)`}>
+          <rect
+            x="16"
+            y="54"
+            width="140"
+            height="12"
+            rx="4"
+            fill={s.handle}
+            stroke="var(--ink)"
+            strokeWidth="2"
+          />
+          {Array.from({ length: 9 }, (_, k) => (
+            <path
+              key={k}
+              d={`M${26 + k * 14} 60l5-4 5 4-5 4z`}
+              fill="var(--ink)"
+              opacity="0.6"
+            />
+          ))}
+          <ellipse
+            cx="160"
+            cy="60"
+            rx="5"
+            ry="13"
+            fill="var(--gold)"
+            stroke="var(--ink)"
+            strokeWidth="2"
+          />
+          <path
+            d="M165 55H590Q622 56 632 61L165 65Z"
+            fill={s.blade}
+            stroke="var(--ink)"
+            strokeWidth="2"
+            strokeLinejoin="round"
+          />
+        </g>
+      ))}
+    </svg>
+  );
+}

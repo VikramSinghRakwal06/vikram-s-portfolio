@@ -1,3 +1,5 @@
+import { readdirSync } from "node:fs";
+import { join } from "node:path";
 import { Bebas_Neue } from "next/font/google";
 import localFont from "next/font/local";
 import Link from "next/link";
@@ -34,9 +36,15 @@ import {
   WingsOfFreedom,
   NenHexagon,
   Zangetsu,
+  ChibiGojo,
+  ChibiSukuna,
+  SantoryuSwords,
 } from "./Motifs";
 import { PowerLevels } from "./PowerLevels";
 import { ReadingProgress, type Chapter } from "./ReadingProgress";
+import { EasterEgg } from "./EasterEgg";
+import { Manual } from "./Manual";
+import { TouchEffects } from "./TouchEffects";
 import "./anime.css";
 
 // Japanese-capable fonts are subset to the glyphs this page uses: `npm run fonts`.
@@ -292,6 +300,22 @@ const rules = [
   "A schema should not need rewriting six months after it is written.",
 ];
 
+// Character portraits dropped into public/characters/ are picked up at build time.
+function characterFaces() {
+  try {
+    return Object.fromEntries(
+      readdirSync(join(process.cwd(), "public/characters"))
+        .filter((f) => /\.(png|jpe?g|webp|avif)$/i.test(f))
+        .map((f) => [
+          f.replace(/\.[^.]+$/, "").toLowerCase(),
+          `/characters/${f}`,
+        ]),
+    );
+  } catch {
+    return {};
+  }
+}
+
 export default function AnimePage() {
   const [vartagram, fitreak] = [...experience].reverse();
   const arcs = [vartagram, fitreak];
@@ -301,16 +325,18 @@ export default function AnimePage() {
       className={`manga min-h-dvh overflow-x-clip ${dela.variable} ${zen.variable} ${bebas.variable} ${rye.variable} ${fell.variable} ${fraktur.variable} ${pixel.variable}`}
     >
       <div className="paper-grain" aria-hidden />
+      <TouchEffects />
+      <EasterEgg faces={characterFaces()} />
 
       {/* header */}
       <header className="sticky top-0 z-50 border-b-[3px] border-[var(--ink)] bg-[var(--paper)]">
         <nav className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6">
-          <a href="#cover" className="flex items-center gap-3">
+          <a href="#cover" data-egg-logo className="flex items-center gap-3">
             <span className="grid size-9 place-items-center bg-[var(--red)] text-xl leading-none font-bold text-white">
               忍
             </span>
-            <span className="f-bebas text-xl leading-none">
-              Vikram Singh · Vol. 01
+            <span className="f-bebas text-xl leading-none whitespace-nowrap">
+              Vikram Singh<span className="hidden sm:inline"> · Vol. 01</span>
             </span>
           </a>
           <ul className="hidden items-center gap-1 lg:flex">
@@ -326,6 +352,7 @@ export default function AnimePage() {
             ))}
           </ul>
           <div className="flex items-center gap-2 sm:gap-3">
+            <Manual />
             <Link
               href="/plain"
               className="f-bebas hidden border-2 border-[var(--ink)] px-3 pt-1 pb-0.5 text-lg transition-colors hover:bg-[var(--gold)] sm:inline-block"
@@ -338,7 +365,7 @@ export default function AnimePage() {
               className="f-bebas bg-[var(--ink)] px-4 pt-1.5 pb-1 text-lg text-[var(--paper)] transition-colors hover:bg-[var(--red)]"
             >
               Contact
-              <Kunai className="ml-2 inline w-8 text-[var(--red)]" />
+              <Kunai className="ml-2 hidden w-8 text-[var(--red)] sm:inline" />
             </a>
           </div>
         </nav>
@@ -610,7 +637,14 @@ export default function AnimePage() {
             </a>
           </div>
           <div className="mt-20">
-            <KatanaDivider />
+            <div className="rise flex items-center gap-4" aria-hidden>
+              <span className="h-0 flex-1 border-t-2 border-dashed border-[var(--ink-3)]" />
+              <SantoryuSwords className="santoryu w-[min(460px,72vw)]" />
+              <span className="h-0 flex-1 border-t-2 border-dashed border-[var(--ink-3)]" />
+            </div>
+            <p className="note mt-2 text-center">
+              ※ three swords: a nod to Zoro&apos;s Santoryu (One Piece)
+            </p>
           </div>
         </section>
 
@@ -720,6 +754,113 @@ export default function AnimePage() {
                 {about[1]}
               </p>
             </div>
+            {/* pro hero profile */}
+            <div className="hero-card draw relative overflow-hidden lg:col-span-12">
+              <div className="grid md:grid-cols-12">
+                <div className="hero-side relative flex flex-col justify-between gap-6 p-6 sm:p-8 md:col-span-4">
+                  <div>
+                    <p className="f-bebas text-sm tracking-[0.3em] text-[#ffe08a]">
+                      Pro hero profile
+                    </p>
+                    <p className="f-dela mt-2 text-4xl leading-none text-white [text-shadow:3px_3px_0_var(--ink)]">
+                      INDEX
+                    </p>
+                    <p className="mt-1 text-sm text-white/85">Hero name</p>
+                  </div>
+                  <p className="plus-ultra f-dela -rotate-6 text-3xl leading-none sm:text-4xl">
+                    PLUS
+                    <br />
+                    ULTRA!
+                  </p>
+                  <svg
+                    viewBox="0 0 60 60"
+                    className="ofa-sparks pointer-events-none absolute inset-0 size-full"
+                    aria-hidden
+                  >
+                    <path
+                      d="M8 12l6 4-3 2 7 6M50 8l-4 7 3 1-5 8M46 50l-6-3 1 4-8-3M10 48l5-6 1 3 6-5"
+                      fill="none"
+                      stroke="#7dff9b"
+                      strokeWidth="1"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </div>
+                <dl className="grid gap-x-8 gap-y-4 p-6 text-[15px] sm:grid-cols-2 sm:p-8 md:col-span-8">
+                  {[
+                    [
+                      "Quirk",
+                      "Query Sight",
+                      "Spots slow queries and N+1 loops at a glance. Used at Vartagram to cut API latency by 30%.",
+                    ],
+                    [
+                      "Special move",
+                      "Composite Index Smash",
+                      "Rewrites a hot endpoint's queries until the index does the work.",
+                    ],
+                    [
+                      "Hero agency",
+                      "Fitreak",
+                      "Full-Stack Developer, leading the Next.js frontend.",
+                    ],
+                    [
+                      "Weakness",
+                      "Unfinished TODOs",
+                      "Physically cannot leave one in a pull request.",
+                    ],
+                  ].map(([k, title, body]) => (
+                    <div key={k}>
+                      <dt className="f-bebas text-base tracking-[0.12em] text-[var(--ink-3)]">
+                        {k}
+                      </dt>
+                      <dd>
+                        <p className="font-bold">{title}</p>
+                        <p className="text-[14px] leading-relaxed text-[var(--ink-2)]">
+                          {body}
+                        </p>
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+              <div className="rival">
+                <svg viewBox="0 0 100 100" className="boom" aria-hidden>
+                  <path
+                    d="M50 2L60 30L88 14L72 42L98 50L72 58L88 86L60 70L50 98L40 70L12 86L28 58L2 50L28 42L12 14L40 30Z"
+                    fill="#ff8a1f"
+                    stroke="var(--ink)"
+                    strokeWidth="3"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M50 22L56 40L74 32L64 48L80 54L62 58L68 76L52 64L44 80L42 62L24 66L36 52L22 40L42 42Z"
+                    fill="#ffe08a"
+                  />
+                </svg>
+                <div className="min-w-0">
+                  <p className="f-bebas text-sm tracking-[0.25em] text-[#ffb35c]">
+                    Rival mode · Explosion Quirk
+                  </p>
+                  <p className="mt-0.5 font-bold text-white">
+                    Howitzer Impact: initial bundle blown down by 28% at
+                    Fitreak.
+                  </p>
+                  <p className="text-[13px] text-[#e8d9c7]">
+                    Route-based code splitting and image optimization. Fastest
+                    page in the storefront, and it knows it.
+                  </p>
+                </div>
+                <span className="boom-text f-dela" aria-hidden>
+                  BOOM!
+                </span>
+              </div>
+              <p className="note px-6 pb-4 sm:px-8">
+                ※ the pro hero profile, Quirk, &ldquo;Plus Ultra&rdquo;, One For
+                All sparks and Bakugo&apos;s explosive rival mode (hover it) are
+                a nod to My Hero Academia
+              </p>
+            </div>
+
             {/* pokédex entry */}
             <div className="pokedex draw group p-4 sm:p-6 lg:col-span-12">
               <div className="mb-4 flex items-center gap-3">
@@ -768,6 +909,37 @@ export default function AnimePage() {
                         Hidden ability
                       </dt>
                       <dd className="font-bold">Stay Correct Under Load</dd>
+                    </div>
+                    <div className="sm:col-span-2">
+                      <dt className="f-bebas text-base text-[var(--ink-3)]">
+                        Partner Pokémon
+                      </dt>
+                      <dd className="mt-1 flex items-center gap-3">
+                        <svg
+                          viewBox="0 0 100 100"
+                          className="water-shuriken size-10 shrink-0"
+                          aria-hidden
+                        >
+                          <path
+                            d="M50 2C58 30 70 42 98 50C70 58 58 70 50 98C42 70 30 58 2 50C30 42 42 30 50 2Z"
+                            fill="#5cc8f0"
+                            stroke="var(--ink)"
+                            strokeWidth="4"
+                          />
+                          <circle
+                            cx="50"
+                            cy="50"
+                            r="9"
+                            fill="#0a4f9e"
+                            stroke="var(--ink)"
+                            strokeWidth="3"
+                          />
+                        </svg>
+                        <span>
+                          <b>Greninja</b> · Water / Dark · signature move{" "}
+                          <b>Water Shuriken</b>. The ninja frog, naturally.
+                        </span>
+                      </dd>
                     </div>
                     <div className="sm:col-span-2">
                       <dt className="f-bebas text-base text-[var(--ink-3)]">
@@ -1317,6 +1489,16 @@ export default function AnimePage() {
                 ))}
               </div>
               <div className="relative text-center">
+                <div className="mb-4 flex items-end justify-center gap-4 sm:gap-8">
+                  <ChibiGojo className="gojo w-24 sm:w-28" />
+                  <span
+                    className="f-dela pb-8 text-2xl text-[#9fb4ff] sm:text-3xl"
+                    aria-hidden
+                  >
+                    VS
+                  </span>
+                  <ChibiSukuna className="sukuna w-24 sm:w-28" />
+                </div>
                 <p className="f-bebas text-lg tracking-[0.3em] text-[#9fb4ff]">
                   Barrier deployed
                 </p>
@@ -1325,6 +1507,10 @@ export default function AnimePage() {
                 </p>
                 <p className="f-bebas mt-3 text-4xl tracking-wider sm:text-6xl">
                   Domain expansion: distributed systems
+                </p>
+                <p className="mt-3 text-base text-[#b8c6ff] italic">
+                  &ldquo;Throughout heaven and earth, I alone am the honored
+                  one.&rdquo;
                 </p>
                 <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-[#cfc8b8]">
                   A domain&apos;s technique is guaranteed to hit anyone inside
@@ -1367,7 +1553,7 @@ export default function AnimePage() {
                 ].map(([k, title, body], n) => (
                   <li
                     key={title}
-                    data-icon="sixeyes"
+                    data-icon="hollowpurple"
                     className="sure-hit dismantle sfx-hover relative overflow-hidden border border-[rgb(159_180_255/0.25)] bg-[rgb(10_10_20/0.6)] p-5"
                   >
                     <div className="flex items-center gap-3">
@@ -1431,9 +1617,10 @@ export default function AnimePage() {
               </div>
               <div className="relative text-center">
                 <Nod dark>
-                  domain expansion, the Unlimited Void starfield, Six Eyes,
-                  Sukuna&apos;s Dismantle slashes (hover a card) and Yuji&apos;s
-                  Black Flash are nods to Jujutsu Kaisen
+                  domain expansion, the Unlimited Void starfield, little Gojo
+                  and Sukuna (hover to lift the blindfold and open his second
+                  eyes), Hollow Purple, Sukuna&apos;s Dismantle slashes (hover a
+                  card) and Yuji&apos;s Black Flash are nods to Jujutsu Kaisen
                 </Nod>
               </div>
             </div>
@@ -1825,6 +2012,10 @@ export default function AnimePage() {
               <span className="note text-[#8a8374]">
                 © {new Date().getFullYear()} {profile.name} · original artwork,
                 no characters were harmed
+              </span>
+              <span className="note basis-full text-[#a39c8c]">
+                ※ This volume hides secret techniques. Open &ldquo;How to
+                read&rdquo; (top right) to find them all.
               </span>
             </div>
           </footer>

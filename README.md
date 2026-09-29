@@ -18,6 +18,14 @@ npm run dev
 
 All artwork is original SVG/CSS; anime references are labelled on the page as homages.
 
+### Character faces in the secret techniques
+
+Drop a square portrait into `public/characters/` named after the character, then rebuild. It appears as a round icon next to that technique's symbol:
+
+`sukuna` · `gojo` · `madara` · `deku` · `jinwoo` · `luffy` · `ichigo` · `kid-goku` · `pikachu` · `greninja` · `zoro` · `tanjiro` · `zenitsu` · `inosuke`; allies: `naruto` · `sasuke` · `kakashi` · `sakura` · `guy` (Tsukuyomi), `bakugo` · `allmight` (Plus Ultra)
+
+Any of `.png`, `.jpg`, `.webp` or `.avif` works (for example `public/characters/gojo.webp`). Missing files fall back to the symbol alone; Madara has a drawn portrait by default. Only use images you have the rights to.
+
 ## Deploy
 
 Set `NEXT_PUBLIC_SITE_URL` to the production URL (used for canonical links, Open Graph and the sitemap), then deploy to Vercel:

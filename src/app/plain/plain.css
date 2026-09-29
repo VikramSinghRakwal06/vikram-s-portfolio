@@ -94,6 +94,105 @@
   }
 }
 
+.plain-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.plain-side,
+.plain-main {
+  display: contents;
+}
+
+.o-id {
+  order: 1;
+}
+.o-glance {
+  order: 2;
+  margin-top: -1rem;
+}
+.o-summary {
+  order: 3;
+}
+.o-exp {
+  order: 4;
+}
+.o-proj {
+  order: 5;
+}
+.o-skills {
+  order: 6;
+}
+.o-edu {
+  order: 7;
+}
+.o-ach {
+  order: 8;
+}
+
+@media (min-width: 640px) {
+  .skill-row {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .plain-layout {
+    display: grid;
+    grid-template-columns: 22rem 1fr;
+    align-items: start;
+    gap: 3.5rem;
+  }
+
+  .plain-side {
+    position: sticky;
+    top: 5rem;
+    display: flex;
+    max-height: calc(100dvh - 6rem);
+    flex-direction: column;
+    gap: 2rem;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+
+  .plain-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .o-glance {
+    margin-top: 0;
+  }
+
+  .plain-side .glance {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .plain-side .glance > div {
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+  }
+  .plain-side .glance > div:nth-child(odd) {
+    border-right: 1px solid var(--line) !important;
+  }
+  .plain-side .glance > div:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--line) !important;
+  }
+  .plain-side .skill-row {
+    display: block;
+  }
+  .plain-side .skill-row dd {
+    margin-top: 0.3rem;
+  }
+  .plain-side .o-id header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
 .chapter-head {
   display: flex;
   align-items: baseline;
@@ -156,6 +255,16 @@
 }
 
 @media print {
+  .plain-layout {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .plain-side,
+  .plain-main {
+    display: contents !important;
+  }
+
   .plain {
     background: #fff;
     line-height: 1.45;
