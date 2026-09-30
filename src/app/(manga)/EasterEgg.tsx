@@ -61,6 +61,12 @@ type Technique = {
   chant?: string[];
   /** How long the screen stays open, in ms. */
   duration?: number;
+  /** A quoted line shown before the technique fires, over prologueImage. */
+  quote?: { text: string; by: string };
+  /** Full-bleed image shown only during the quote, then fades to reveal the rest. */
+  prologueImage?: string | string[];
+  /** Caption shown under the final prologue image (no attribution, unlike quote). */
+  prologueCaption?: string | string[];
   /** A large image slowly spinning behind the title (public/characters/<spin>). */
   spin?: string;
 };
@@ -147,7 +153,18 @@ export const techniques: Technique[] = [
     sub: "TENSA ZANGETSU",
     figure: Zangetsu,
     face: "ichigo",
-    faceCredit: "Ichigo art: Geisy Tattoo",
+    scene: "getsuga-eclipse",
+    backdrop: { key: "hollow-ichigo", name: "Hollow Ichigo" },
+    quote: {
+      text: "The confined Quincy King regains his pulse after 900 years. His mind after 90 years. His strength after 9 years. And the world in 9 days.",
+      by: "Yhwach, the Quincy King",
+    },
+    prologueImage: ["bleach-throne", "bleach-squad", "gotei-13"],
+    prologueCaption: [
+      "The Soul Society stands with him.",
+      "The Gotei 13 answer the call.",
+    ],
+    duration: 10000,
   },
   {
     words: ["kamehameha"],
@@ -338,6 +355,20 @@ function Decoration({ effect }: { effect: Effect }) {
       return (
         <>
           <span className="egg-reiatsu" />
+          {[-24, 8, -12].map((r, i) => (
+            <svg
+              key={i}
+              className={`bk-cut bk-cut-${i}`}
+              viewBox="0 0 1000 40"
+              preserveAspectRatio="none"
+            >
+              <path
+                pathLength="1"
+                d="M-40 20L1040 20"
+                style={{ "--r": `${r}deg` } as CSSProperties}
+              />
+            </svg>
+          ))}
           <span className="egg-slash" />
           <span className="egg-slash egg-slash-2" />
           <svg className="egg-getsuga" viewBox="0 0 200 400">
@@ -965,6 +996,36 @@ export function EasterEgg({ faces = {} }: { faces?: Record<string, string> }) {
               <figcaption>{active.backdrop.name}</figcaption>
             </figure>
           )}
+          {active.prologueImage &&
+            [active.prologueImage].flat().map(
+              (key, i) =>
+                faces[key] && (
+                  // eslint-disable-next-line @next/next/no-img-element -- user-supplied prologue art
+                  <img
+                    key={key}
+                    src={faces[key]}
+                    alt=""
+                    className={`egg-prologue egg-prologue-${i}`}
+                  />
+                ),
+            )}
+          {active.quote && (
+            <div className="egg-quote">
+              <p className="egg-quote-text">
+                &ldquo;{active.quote.text}&rdquo;
+              </p>
+              <p className="egg-quote-by">&mdash; {active.quote.by}</p>
+            </div>
+          )}
+          {active.prologueCaption &&
+            [active.prologueCaption].flat().map((text, i) => (
+              <p
+                key={text}
+                className={`egg-prologue-caption egg-prologue-caption-${i}`}
+              >
+                {text}
+              </p>
+            ))}
           {active.allies?.some((a) => faces[a.key]) && (
             <ul className="egg-allies" aria-label="Allies">
               {active.allies
